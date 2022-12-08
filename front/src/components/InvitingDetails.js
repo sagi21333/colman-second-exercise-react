@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import React, { useState, useEffect  } from 'react';
+import React, { useState } from 'react';
 
 const Product = (props) => {
     const [fullName, setFullName] = useState(props.fullName);
@@ -8,30 +8,49 @@ const Product = (props) => {
     const [address, setAddress] = useState(props.address);
 
     const handleChangeFullName = (event) => {
-        setFullName(event.target.value);
-        props.handleChangeFullName(event.target.value);
+        const value = event.target.value;
+        setFullName(value);
+        props.handleChangeFullName(value);
     }
 
     const handleChangeNumber = (event) => {
-        setPhoneNumber(event.target.value);
-        props.handleChangePhoneNumber(event.target.value);
+        const value = event.target.value;
+        setPhoneNumber(value);
+        props.handleChangePhoneNumber(value);
     }
 
     const handleChangeAddress = (event) => {
-        setAddress(event.target.value);
-        props.handleChangeAddress(event.target.value);
+        const value = event.target.value;
+        console.log(value);
+        setAddress(value);
+        props.handleChangeAddress(value);
     }
 
     return(
             <Grid container direction="row" sx={{ml:4}}>
                 <Grid Item xs={2.5}>
-                    <TextField value={fullName} onChange={handleChangeFullName} id="standard-basic" required helperText="Full Name" />
+                    <TextField 
+                        label="fullName"
+                        value={fullName} 
+                        onChange={handleChangeFullName} 
+                        id="standard-basic" 
+                        required />
                 </Grid>
                 <Grid Item xs={2.5}>
-                    <TextField value={phoneNumber} onChange={handleChangeNumber} id="standard-basic" required helperText="Phone number" />
+                    <TextField 
+                        label="Phone number"
+                        value={phoneNumber} 
+                        onChange={handleChangeNumber} 
+                        id="standard-basic" 
+                        required />
                 </Grid>
                 <Grid Item xs={2.5}>
-                <TextField value={address} onChange={handleChangeAddress} id="standard-basic" required helperText="address" />
+                <TextField 
+                    label="address"
+                    value={address} 
+                    onChange={handleChangeAddress} 
+                    id="standard-basic" 
+                    required />
                 </Grid>
             </Grid>  
     );
