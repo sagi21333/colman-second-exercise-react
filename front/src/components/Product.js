@@ -12,7 +12,7 @@ import * as React from 'react';
 const Product = (props) => {
 
     return(
-        <Card sx={{ display: 'flex', minWidth: '30%', maxWidth: '40%', mb: 2, pr: 2, pl: 2, pt:2}} >
+        <Card variant="outlined" sx={{ display: 'flex', minWidth: '45%', maxWidth: '100%', mb: 2, pr: 2, pl: 2, pt:2}} >
             <Grid container direction="column">
             <Grid Item xs={8} container direction="column">
                 
@@ -20,7 +20,7 @@ const Product = (props) => {
                     <Typography variant="subtitle1" color="text.primary" component="div">
                     {props.price} $ 
                     </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                    <Typography variant="subtitle1" color="text.primary" component="div">
                     {props.description}
                     </Typography>
                 

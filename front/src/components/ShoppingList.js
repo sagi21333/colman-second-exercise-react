@@ -4,16 +4,38 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useState, useEffect  } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import InvitingDetails from './InvitingDetails';
+import {orderShoppingList} from '../services/supermarketService';
 
 const ShopingList = (props) => {
 
     const [ShoppingList, setShoppingList] = useState(props.ShoppingList);
     const [totalPrice, setTotalPrice] = useState(0);
-    
+    const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
+
     const handleSubmit = async () => {
-        if(ShoppingList.length > 0) {
-            setTotalPrice(0);
-            props.ResetShoppingList();
+        if(ShoppingList.length > 0){
+            console.log(fullName !== undefined);
+            console.log(fullName);
+            if(fullName !== '' && phoneNumber !== '' && address !== '') {
+                setTotalPrice(0);
+                setFullName(undefined);
+                setPhoneNumber(undefined);
+                setAddress(undefined);
+                props.ResetShoppingList();
+                
+                try {
+                    orderShoppingList({"products": ShoppingList, "fullName": fullName, "phoneNumber": phoneNumber, "address": address});
+                    toast.success('Successfully ordered!');
+                }
+                catch(err) {
+                    toast.error("Didn't success order: " + err.message);
+                }
+            } else {
+                toast.error("Yoe didn't enter all the required fields");
+            }
         } else {
             toast.error("You dont have products in your shopping list");
         }
@@ -30,6 +52,20 @@ const ShopingList = (props) => {
         
       }, ShoppingList);
 
+    const handleChangeFullName = (event) => {
+        setFullName(event.target.value);
+        console.log(fullName);
+    }
+
+    const handleChangeNumber = (event) => {
+        setPhoneNumber(event.target.value);
+    }
+
+    const handleChangeAddress = (event) => {
+        setAddress(event.target.value);
+    }
+
+
     return(
         <div> 
             <Toaster
@@ -39,22 +75,36 @@ const ShopingList = (props) => {
 
             <Grid container direction="column" spacing={2}>
             <Grid item xs={4}>
-                <Typography item xs={12} sx={{p:2}} component="div" variant="h5">Shoping List</Typography>
+                <Typography sx={{p:2}} align="center" component="div" variant="h4">Shoping List</Typography>
             </Grid>
+            <Grid item xs={12} container spacing={3}>
                 {ShoppingList.map((product,index) => {
                     return (
-                        <Product 
-                        key={index}
-                        title={product.title}
-                        price={product.price}
-                        description={product.description}
-                        imageUrl={product.imageUrl} />)
+                        <Grid item xs={5}>
+                            <Product 
+                                sx={{pr:2}}
+                                key={index}
+                                title={product.title}
+                                price={product.price}
+                                description={product.description}
+                                imageUrl={product.imageUrl} />
+                        </Grid>)
 
                 })}
+            </Grid>
                 <Grid item xs={8}>
-                    <Typography item xs={12} sx={{p:2}} component="div" variant="h5">Total: {totalPrice} $ </Typography>
+                    <Typography sx={{p:2}} component="div" variant="h5">Total: {totalPrice} $ </Typography>
                 </Grid>
-                <Grid item xs={4}>
+
+                <InvitingDetails 
+                    fullName={fullName} 
+                    address={address} 
+                    phoneNumber={phoneNumber} 
+                    handleChangeAddress={handleChangeAddress}
+                    andleChangePhoneNumber={handleChangeNumber}
+                    handleChangeFullName={handleChangeFullName}/>
+
+                <Grid item xs={4} sx={{ml:4, mt:5}}>
                     <Button variant="outlined" size="medium" onClick={handleSubmit}>Order</Button>
                 </Grid>
             </Grid>
