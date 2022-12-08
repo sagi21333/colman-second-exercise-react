@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import * as React from 'react';
+import React, { useState, useEffect  } from 'react';
 
 const Product = (props) => {
     const [fullName, setFullName] = useState(props.fullName);
@@ -23,15 +23,15 @@ const Product = (props) => {
     }
 
     return(
-            <Grid container>
-                <Grid Item xs={8}>
-                    <TextField value={fullName} onChange={handleChangeFullName} id="standard-basic" required defaultValue="Full Name" />
+            <Grid container direction="row" sx={{ml:4}}>
+                <Grid Item xs={2.5}>
+                    <TextField value={fullName} onChange={handleChangeFullName} id="standard-basic" required helperText="Full Name" />
                 </Grid>
-                <Grid Item xs={8}>
-                    <TextField value={phoneNumber} onChange={handleChangeNumber} id="standard-basic" required defaultValue="Phone number" />
+                <Grid Item xs={2.5}>
+                    <TextField value={phoneNumber} onChange={handleChangeNumber} id="standard-basic" required helperText="Phone number" />
                 </Grid>
-                <Grid Item xs={8}>
-                <TextField value={address} onChange={handleChangeAddress} id="standard-basic" required defaultValue="address" />
+                <Grid Item xs={2.5}>
+                <TextField value={address} onChange={handleChangeAddress} id="standard-basic" required helperText="address" />
                 </Grid>
             </Grid>  
     );
