@@ -40,6 +40,8 @@ const Supermarket = () => {
             />
 
             {clicked ? 
+
+            // First option shoping list click
             <Grid container direction="column" spacing={2} sx={{m:5}}>
                 <Grid item xs={8}> 
                     <Button item variant="outlined" onClick={() => setClicked(false)}>return to supermarket</Button> 
@@ -48,6 +50,8 @@ const Supermarket = () => {
                 <ComShoppingList ShoppingList={ShoppingList} ResetShoppingList={ResetShoppingList}/> 
                 </Grid> 
                 : 
+
+            // Second option shoping list click
             <Grid container spacing={2} sx={{m:5}}>
                 <Grid item xs={8}>
                     <IconButton item xs={4} color="primary" onClick={() => setClicked(true)} aria-label="add to shopping cart">
