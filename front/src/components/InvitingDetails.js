@@ -3,10 +3,11 @@ import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 
 const Product = (props) => {
-    const [fullName, setFullName] = useState(props.fullName);
-    const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
-    const [address, setAddress] = useState(props.address);
+    const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
+    
     const handleChangeFullName = (event) => {
         const value = event.target.value;
         setFullName(value);
@@ -16,12 +17,11 @@ const Product = (props) => {
     const handleChangeNumber = (event) => {
         const value = event.target.value;
         setPhoneNumber(value);
-        props.handleChangePhoneNumber(value);
+        props.handleChangeNumber(value);
     }
 
     const handleChangeAddress = (event) => {
         const value = event.target.value;
-        console.log(value);
         setAddress(value);
         props.handleChangeAddress(value);
     }

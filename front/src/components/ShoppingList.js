@@ -52,24 +52,24 @@ const ShopingList = (props) => {
         
       }, ShoppingList);
 
-    const handleChangeFullName = (event) => {
-        setFullName(event.target.value);
+    const handleChangeFullName = (fullName) => {
+        setFullName(fullName);
         console.log(fullName);
     }
 
-    const handleChangeNumber = (event) => {
-        setPhoneNumber(event.target.value);
+    const handleChangeNumber = (phoneNumber) => {
+        setPhoneNumber(phoneNumber);
     }
 
-    const handleChangeAddress = (event) => {
-        setAddress(event.target.value);
+    const handleChangeAddress = (address) => {
+        setAddress(address);
     }
 
 
     return(
         <div> 
             <Toaster
-                position="top-left"
+                position="top-right"
                 reverseOrder={false}
             />
 
@@ -101,7 +101,7 @@ const ShopingList = (props) => {
                     address={address} 
                     phoneNumber={phoneNumber} 
                     handleChangeAddress={handleChangeAddress}
-                    andleChangePhoneNumber={handleChangeNumber}
+                    handleChangeNumber={handleChangeNumber}
                     handleChangeFullName={handleChangeFullName}/>
 
                 <Grid item xs={4} sx={{ml:4, mt:5}}>
