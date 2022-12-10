@@ -1,12 +1,11 @@
-import Supermarket from "./components/Supermarket";
+import Supermarket from './components/Supermarket'
 
 function App() {
-
-  return (
-    <div> 
-      <Supermarket />
-    </div>
-  );
+    return (
+        <div>
+            <Supermarket />
+        </div>
+    )
 }
 
-export default App;
+export default App
