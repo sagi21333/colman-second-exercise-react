@@ -5,7 +5,7 @@ const get = (req, res) => {
         if (error) {
             console.error(error);
         } else {
-            res.send(products)
+            res.json(products)
         }
     });
 }

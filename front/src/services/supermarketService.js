@@ -1,31 +1,34 @@
-/// Here need to be implemented a axios requets to the server side and
+import axios from 'axios';
 
-export const getSupermarketProductList = () => {
-    const productList = [
-        { title: 'milk', price: '10', imageUrl: '/images/milk.jpeg', key: '1' },
-        {
-            title: 'pasta',
-            price: '5',
-            imageUrl: '/images/pasta.jpeg',
-            key: '2',
-        },
-        {
-            title: 'Banana',
-            price: '9',
-            imageUrl: '/images/pasta.jpeg',
-            key: '2',
-        },
-        {
-            title: 'Avokado',
-            price: '7',
-            imageUrl: '/images/pasta.jpeg',
-            key: '2',
-        },
-    ]
-    // todo: adding a call to the server get products list
-    return productList
-}
+// function to get the list of products from the server
+export const getSupermarketProductList = async () => {
+    let products;
+  
+    try {
+        await axios
+        .get('http://localhost:4000/products')
+        .then((res) => {
+          products = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+          throw new Error('Failed to get supermarket product list');
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  
+    console.log(products);
+    return products;
+};
 
+// function to save the order to the server
 export const orderShoppingList = (productList) => {
-    // todo: adding a call to the server to save the order
-}
+  return axios
+    .post('http://localhost:4000/orders', { productList })
+    .then((res) => res.data)
+    .catch((err) => {
+      console.error(err);
+      throw new Error('Failed to save shopping list order');
+    });
+};

@@ -14,9 +14,11 @@ const Supermarket = () => {
     const [clicked, setClicked] = useState(false)
     const [productList, setProductsList] = useState([])
     useEffect(() => {
-        const products = getSupermarketProductList()
-        setProductsList(products)
-    }, [])
+        fetch("http://localhost:4000/products")
+            .then((Response) => Response.json())
+            .then((data) => setProductsList(data))
+            .catch((err) => console.log(err));
+    });
 
     const [ShoppingList, setShoppingList] = useState([])
 
