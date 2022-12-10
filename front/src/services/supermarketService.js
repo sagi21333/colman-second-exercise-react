@@ -2,12 +2,28 @@
 
 export const getSupermarketProductList = () => {
     const productList = [
-    {title: "milk", price: "10", imageUrl: "/images/milk.jpeg", key: '1'},
-    {title: "pasta", price: "5", imageUrl: "/images/pasta.jpeg", key: '2'},
-    {title: "Banana", price: "9", imageUrl: "/images/pasta.jpeg", key: '2'},
-    {title: "Avokado", price: "7", imageUrl: "/images/pasta.jpeg", key: '2'}];
+        { title: 'milk', price: '10', imageUrl: '/images/milk.jpeg', key: '1' },
+        {
+            title: 'pasta',
+            price: '5',
+            imageUrl: '/images/pasta.jpeg',
+            key: '2',
+        },
+        {
+            title: 'Banana',
+            price: '9',
+            imageUrl: '/images/pasta.jpeg',
+            key: '2',
+        },
+        {
+            title: 'Avokado',
+            price: '7',
+            imageUrl: '/images/pasta.jpeg',
+            key: '2',
+        },
+    ]
     // todo: adding a call to the server get products list
-    return (productList);
+    return productList
 }
 
 export const orderShoppingList = (productList) => {
