@@ -7,7 +7,6 @@ import ComShoppingList from './ShoppingList'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import IconButton from '@mui/material/IconButton'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import { getSupermarketProductList } from '../services/supermarketService'
 import toast, { Toaster } from 'react-hot-toast'
 
 const Supermarket = () => {

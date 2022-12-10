@@ -12,6 +12,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use('/', require('./routes/products'));
+app.use('/', require('./routes/shopingLists'));
 
 const port = 4000;
 app.listen(port, () => {

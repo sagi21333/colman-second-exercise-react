@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography'
 import React, { useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import InvitingDetails from './InvitingDetails'
-import { orderShoppingList } from '../services/supermarketService'
 
 const ShopingList = (props) => {
     const [ShoppingList, setShoppingList] = useState(props.ShoppingList)
@@ -26,12 +25,23 @@ const ShopingList = (props) => {
                 props.ResetShoppingList()
 
                 try {
-                    orderShoppingList({
-                        products: ShoppingList,
-                        fullName: fullName,
-                        phoneNumber: phoneNumber,
-                        address: address,
+                    fetch('http://localhost:4000/addShopingList', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            products: ShoppingList,
+                            fullName: fullName,
+                            phoneNumber: phoneNumber,
+                            address: address
+                        }),
                     })
+                    .then((response) => response.json())
+                    .then((data) => {
+                    // do something with the response data
+                    })
+                    .catch((err) => console.log(err));
                     toast.success('Successfully ordered!')
                 } catch (err) {
                     toast.error("Didn't success order: " + err.message)
